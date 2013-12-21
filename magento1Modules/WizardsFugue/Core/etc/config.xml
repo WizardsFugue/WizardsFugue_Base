@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <WizardsFugue_Core>
+            <version>0.1.0</version>
+        </WizardsFugue_Core>
+    </modules>
+
+    <global>
+        <models>
+            <core>
+                <rewrite>
+                    <layout>WizardsFugue_Core_Model_Layout</layout>
+                    <design_package>WizardsFugue_Core_Model_Design_Package</design_package>
+                </rewrite>
+            </core>
+        </models>
+    </global>
+
+</config>

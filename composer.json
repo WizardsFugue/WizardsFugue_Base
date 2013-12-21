@@ -1,0 +1,24 @@
+{
+    "name": "wizards-fugue/base",
+    "description": "a framework to glue frameworks and provide helper to deal with customize them",
+    "keywords":[ "silex", "magento"],
+    "license": "MIT",
+    "authors":[
+        {
+            "name":"Daniel Fahlke aka Flyingmana",
+            "email":"flyingmana@googlemail.com"
+        }
+    ],
+    "autoload":{
+        "classmap": [
+            "src/",
+            "magento1Modules/"
+        ]
+    },
+    "require":  {
+        "qafoo/rmf": "1.*"
+    },
+    "suggest":{
+        "p2ee/partlets":"*"
+    }
+}
