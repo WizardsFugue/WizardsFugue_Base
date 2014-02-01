@@ -8,12 +8,30 @@ class WizardsFugue_Core_Model_Design_Package extends Mage_Core_Model_Design_Pack
 
     protected function _fallback($file, array &$params, array $fallbackScheme = array(array()))
     {
+
+	    // override to get the installer working. if i woudn't set this, it'd try the frontend
+	    // package instead of the installer one
+	    if(!Mage::isInstalled()) {
+		    $params['_area'] = 'install';
+		    $params['_package'] = 'default';
+		    $params['_theme'] = 'default';
+	    }
+
 	    if($params['_area'] == 'adminhtml') {
 		    // set on the custom admin design dir
 		    Mage::app()->getConfig()->getOptions()->setData('design_dir', Mage::app()->getConfig()->getOptions()->getAdminDesignDir());
+	    } elseif($params['_area'] == 'install') {
+		    $originalOptions = Mage::app()->getConfig()->getOptions()->getWizardsFudge();
+
+		    $basePath = $originalOptions['paths']['design_dir'];
+			if($params['_package'] == 'base') {
+				Mage::app()->getConfig()->getOptions()->setData('design_dir', $basePath);
+			}
+		    Mage::app()->getConfig()->getOptions()->setData('design_dir', Mage::app()->getConfig()->getOptions()->getInstallDesignDir());
 	    }
 
 	    $result = parent::_fallback($file, $params, $fallbackScheme);
+
 
 
         if( !$result ){
