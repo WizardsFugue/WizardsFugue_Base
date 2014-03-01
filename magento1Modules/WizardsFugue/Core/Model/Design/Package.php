@@ -105,4 +105,21 @@ class WizardsFugue_Core_Model_Design_Package extends Mage_Core_Model_Design_Pack
 
 		return $result;
 	}
+
+    /**
+     * Set package area
+     *
+     * @param  string $area
+     * @return Mage_Core_Model_Design_Package
+     */
+    public function setArea($area)
+    {
+        
+        parent::setArea($area);
+        if($area == 'adminhtml') {
+            // set on the custom admin design dir
+            Mage::app()->getConfig()->getOptions()->setData('design_dir', Mage::app()->getConfig()->getOptions()->getAdminDesignDir());
+        }
+        return $this;
+    }
 }
